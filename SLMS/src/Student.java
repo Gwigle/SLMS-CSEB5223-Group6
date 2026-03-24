@@ -9,16 +9,18 @@ Author:
 4. PATVIR SINGH KHOSA 
 
 Description: 
-Represents a student in the SLMS system with attributes, getters, setters and display functionality.
- */
+Represents a student in the SLMS system with attributes, getters, setters, and display functionality.
+*/
 
 public class Student {
 
-    private String studentID;
-    private String studentName;
-    private String email;
-    private String phone;
+    // Variables to store student details
+    private String studentID;   // Unique ID
+    private String studentName; // Name of student
+    private String email;       // Student email
+    private String phone;       // Student phone number
 
+    // Constructor to create new student
     public Student(String studentID, String studentName, String email, String phone) {
         this.studentID = studentID;
         this.studentName = studentName;
@@ -26,18 +28,18 @@ public class Student {
         this.phone = phone;
     }
 
-    // Getters
+    // ------------------------- GETTERS -------------------------
     public String getStudentID() { return studentID; }
     public String getStudentName() { return studentName; }
     public String getEmail() { return email; }
     public String getPhone() { return phone; }
 
-    // Setters 
+    // ------------------------- SETTERS -------------------------
     public void setStudentName(String studentName) { this.studentName = studentName; }
     public void setEmail(String email) { this.email = email; }
     public void setPhone(String phone) { this.phone = phone; }
 
-    // Display student information form
+    // Display student information in readable format
     public void displayStudent() {
         System.out.println("==================================");
         System.out.printf("Student ID   : %s%n", studentID);
