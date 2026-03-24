@@ -2,25 +2,27 @@
 File: 
 Course.java
 
-Author: 
+Author:
 1. ARIFAH NUR IMAN BINTI MOHD FADZILAH     
 2. REYHANA MARSYA BINTI AHMAD SAIFULLIZAN   
 3. DESHINI A/P SELVAKUMAR                
-4. PATVIR SINGH KHOSA                
+4. PATVIR SINGH KHOSA                 
 
 Description: 
-Represents a course in the SLMS system with attributes, getters, setters and display functionality.
- */
+Represents a course in the SLMS system with attributes, getters, setters, and display functionality.
+*/
 
 public class Course {
 
-    private String courseCode;
-    private String courseName;
-    private int creditHour;
-    private String summary;
-    private String teamsLink;
-    private String courseType; // core, elective
+    // Variables to store course details
+    private String courseCode; // Unique course code
+    private String courseName; // Name of the course
+    private int creditHour;    // Number of credit hours
+    private String summary;    // Short description
+    private String teamsLink;  // Link to Microsoft Teams
+    private String courseType; // Type: core or elective
 
+    // Constructor to create a new course
     public Course(String courseCode, String courseName, int creditHour,
                   String summary, String teamsLink, String courseType) {
         this.courseCode = courseCode;
@@ -31,7 +33,7 @@ public class Course {
         this.courseType = courseType;
     }
 
-    // Getters
+    // ------------------------- GETTERS -------------------------
     public String getCourseCode() { return courseCode; }
     public String getCourseName() { return courseName; }
     public int getCreditHour() { return creditHour; }
@@ -39,14 +41,14 @@ public class Course {
     public String getTeamsLink() { return teamsLink; }
     public String getCourseType() { return courseType; }
 
-    // Setters 
+    // ------------------------- SETTERS -------------------------
     public void setCourseName(String courseName) { this.courseName = courseName; }
     public void setCreditHour(int creditHour) { this.creditHour = creditHour; }
     public void setSummary(String summary) { this.summary = summary; }
     public void setTeamsLink(String teamsLink) { this.teamsLink = teamsLink; }
     public void setCourseType(String courseType) { this.courseType = courseType; }
 
-    // Display course information form
+    // Display course information in a readable format
     public void displayCourse() {
         System.out.println("==================================");
         System.out.printf("Course Code : %s%n", courseCode);
