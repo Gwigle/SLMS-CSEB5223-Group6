@@ -1,50 +1,14 @@
 # Student Learning Management System (SLMS)
-Please refer to the SLMS-CSEB5223-Group6-(Version2).pdf report in the /docs folder of this repository for detailed documentation.
+Please refer to the SLMS-CSEB5223-Group6-(Version3).pdf report in the /docs folder of this repository for detailed documentation.
 
-Our project is **console-based Java application** that manages **students, courses and enrollments** using Object-Oriented Programming principles.
+# Introduction
+The Student Learning Management System (SLMS) is a console-based Java application designed to allow administrators to efficiently manage:
 
-This project was developed for the **Software Construction & Methods (CSEB5223)** course to demonstrate **OOP concepts, array-based data storage, and system modularity**.
-
-The system allows administrators to manage courses and students through a **menu-driven interface**.
-
----
-
-#  Table of Contents
-
-* [Introduction]
-* [Project Information]
-* [Group Members]
-* [Features]
-* [System Architecture]
-* [Class Design]
-* [Course Module]
-* [Student Module]
-* [Enrollment Module]
-* [Data Storage Design]
-* [Project Structure]
-* [Example Output]
-* [References]
-
----
-
-#  Introduction
-
-The **Student Learning Management System (SLMS)** is a Java console application designed to manage academic course and student information.
-
-The system demonstrates important **software engineering and object-oriented design principles**, including:
-
-* Encapsulation
-* Modularity
-* Reusability
-* Low coupling
-* High cohesion
-
-The system allows administrators to:
-
-* Manage course records
-* Manage student records
-* Assign students to courses
-* Display course and student information
+* Students
+* Courses
+* Student–Course relationships
+* 
+The system provides a menu-driven interface for performing input, search, edit, delete, and display operations.
 
 ---
 
@@ -71,6 +35,44 @@ The system allows administrators to:
 
 ---
 
+# Development Progress
+
+## Lab 2 – System Design
+Use Case Design
+Class Design
+Documentation and Coding Standards
+Naming Conventions
+Modularity Principles
+Continuous Integration setup
+
+## Lab 3 – Course Module 
+* Add Course
+* Search Course
+* Display Course
+* Input validation introduced
+
+## Lab 4 – Course Module 
+* Edit Course
+* Delete Course
+* View All Courses
+* Duplicate prevention
+* Relationship matrix introduced
+
+## Lab 5 – Student Module 
+* Student class created
+* Add Student
+* Search Student
+* Edit Student
+* Array-based storage
+
+## Lab 6 – Student Module
+* Delete Student
+* View All Students
+* Full system integration
+* Relationship handling finalized
+
+---
+
 #  Features
 
 ## Course Management
@@ -94,6 +96,27 @@ The system allows administrators to:
 * Assign Student to Course
 * List Courses of Student
 * List Students of Course
+
+---
+
+# Use Case
+
+## Actor: Admin
+
+| Use Case       | Description                |
+| -------------- | -------------------------- |
+| Add Course     | Input and store course data|
+| Search Course  | Find course by code        |
+| Edit Course    | Modify course details      |
+| Delete Course  | Remove course              |
+| View Courses   | Display all courses        |
+| Add Student    | Input student data         |
+| Search Student | Find student by ID         |
+| Edit Student   | Modify student data        |
+| Delete Student | Remove student             |
+| Assign Student | Link student to course     |
+| List Courses   | View courses per student   |
+| List Students  | View students per course   |
 
 ---
 
@@ -383,6 +406,17 @@ boolean[][] relationship = new boolean[100][100];
 
 ---
 
+# Naming Conventions
+
+| Element      | Format    | Example     |
+| ------------ | --------- |------------ |
+| Class        | PascalCase| Course      |
+| Method       | camelCase | addCourse() |
+| Variable     | camelCase | studentName |
+| Constant     | UPPER_CASE|  MAX_SIZE   |
+
+---
+
 #  Project Structure
 
 ```
@@ -393,6 +427,7 @@ SLMS
 ├── docs
 │   ├── SLMS-CSEB5223-Group6.docx
 │   ├── SLMS-CSEB5223-Group6-(Version2).pdf
+│   ├── SLMS-CSEB5223-Group6-(Version3).pdf
 │   └──README.md
 ├── src
 │   ├── Course.java
@@ -406,31 +441,13 @@ SLMS
 
 ---
 
-#  Example Output
+#  Modularity Benefits
 
-```
-===== SLMS MENU =====
-
-1. Add Course
-2. Search Course
-3. Edit Course
-4. Delete Course
-5. View All Courses
-6. Add Student
-7. View All Students
-8. Exit
-
-Enter option: 1
-
-Enter Course Code: CSEB5223
-Enter Course Name: Software Construction & Methods
-Enter Credit Hour: 3
-Enter Summary: Practice coding and build SLMS project.
-Enter Teams Link: https://teams.microsoft.com/...
-Enter Course Type: core
-
-Course added successfully!
-```
+* Maintainability
+* Reusability
+* Readability
+* Scalability
+* Team collaboration
 
 ---
 
@@ -441,5 +458,3 @@ Course added successfully!
 * [https://sourcemaking.com](https://sourcemaking.com)
 * [https://gitbybit.com](https://gitbybit.com)
 * [https://draw.io](https://draw.io)
-
----
