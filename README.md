@@ -69,7 +69,7 @@ It supports operations such as input, search, edit, delete and display in a modu
 
 The system follows a modular Object-Oriented Architecture:
 
-
+```
 Main
 │
 └── SLMSManager (refactored into managers)
@@ -77,7 +77,7 @@ Main
 ├── StudentManager
 ├── RelationshipManager
 └── SearchCacheManager (API Middleware)
-
+```
 
 ---
 
@@ -90,7 +90,7 @@ Main
 | CourseManager | Handles course operations |
 | StudentManager | Handles student operations |
 | RelationshipManager | Handles enrollment logic |
-| CacheAPI | Handles caching & auto-suggestions |
+| SearchCacheManager | Handles caching & auto-suggestions |
 | Main | Runs the program |
 
 ---
@@ -108,7 +108,7 @@ Main
 ---
 
 ### Display Method
-
+```
 public void displayCourse() {
     System.out.println("==================================");
     System.out.printf("Course Code : %s%n", courseCode);
@@ -119,7 +119,7 @@ public void displayCourse() {
     System.out.printf("Type        : %s%n", courseType);
     System.out.println("==================================");
 }
-
+```
 ---
 
 ## Student Class
@@ -132,7 +132,7 @@ public void displayCourse() {
 - phone
 
 ### Display Method
-
+```
 public void displayStudent() {
     System.out.println("--------------------------------");
     System.out.println("Student ID   : " + studentId);
@@ -141,25 +141,28 @@ public void displayStudent() {
     System.out.println("Phone        : " + phone);
     System.out.println("--------------------------------");
 }
-
+```
 ---
 
 ## Enrollment Module
 
 ### Relationship Storage
 
+```
 boolean[][] relationship = new boolean[100][100];
 Example
 relationship[studentIndex][courseIndex] = true;
+```
 
 ---
 
 ## Data Storage Design
 
-
+```
 Course[] courses = new Course[100];
 Student[] students = new Student[100];
 boolean[][] relationship = new boolean[100][100];
+```
 
 ### Maximum Capacity
 
@@ -185,7 +188,7 @@ boolean[][] relationship = new boolean[100][100];
 
 ## Project Structure
 
-
+```
 SLMS
 │
 ├── test
@@ -207,7 +210,7 @@ SLMS
 │   ├── README.md
 │
 ├── README.md
-
+```
 
 ---
 
