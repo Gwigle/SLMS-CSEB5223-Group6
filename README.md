@@ -103,7 +103,9 @@ Main
 - creditHour  
 - summary  
 - teamsLink  
-- courseType  
+- courseType
+
+---
 
 ### Display Method
 ```java
