@@ -108,7 +108,7 @@ Main
 ---
 
 ### Display Method
-```java
+
 public void displayCourse() {
     System.out.println("==================================");
     System.out.printf("Course Code : %s%n", courseCode);
@@ -133,7 +133,6 @@ public void displayCourse() {
 
 ### Display Method
 
-```java
 public void displayStudent() {
     System.out.println("--------------------------------");
     System.out.println("Student ID   : " + studentId);
