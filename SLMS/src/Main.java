@@ -9,7 +9,8 @@ Author:
 4. PATVIR SINGH KHOSA 
 
 Description: 
-Main entry point for SLMS system. Handles menu navigation and user input.
+Main entry point for SLMS system. Handles menu navigation and integrates
+CourseManager, StudentManager, RelationshipManager and SearchCacheManager.
 */
 
 import java.util.Scanner;
@@ -18,13 +19,17 @@ public class Main {
 
     public static void main(String[] args) {
 
-        SLMSManager manager = new SLMSManager(); // Create manager to handle courses and students from SLMSManager.java file
-        Scanner sc = new Scanner(System.in);     // Scanner to read input
+        Scanner sc = new Scanner(System.in);
+
+        // Create manager objects
+        CourseManager courseManager = new CourseManager(sc);
+        StudentManager studentManager = new StudentManager(sc);
+        RelationshipManager relationshipManager = new RelationshipManager(sc, courseManager, studentManager);
+        SearchCacheManager cacheManager = new SearchCacheManager();
 
         int choice;
-        // This do-while loop keeps system running until admin chooses to exit
+
         do {
-            // Display main menu
             System.out.println("\n===== SLMS MENU =====");
             System.out.println("1. Add Course");
             System.out.println("2. View All Courses");
@@ -35,40 +40,118 @@ public class Main {
             System.out.println("7. Assign Student to Course");
             System.out.println("8. List Courses of Student");
             System.out.println("9. List Students of Course");
+            System.out.println("10. Course Search Suggestions");
+            System.out.println("11. Student Search Suggestions");
             System.out.println("0. Exit");
             System.out.print("Enter choice: ");
 
-            choice = Integer.parseInt(sc.nextLine()); // Read choice
+            try {
+                choice = Integer.parseInt(sc.nextLine());
+            } catch(NumberFormatException e) {
+                System.out.println("Invalid input! Please enter a number.");
+                choice = -1;
+                continue;
+            }
 
-            switch(choice){
-                case 1: manager.addCourse(); break; // Call add course
-                case 2: manager.viewAllCourses(); break; // Show all courses
+            switch(choice) {
+                case 1:
+                    courseManager.addCourse();
+                    break;
+
+                case 2:
+                    courseManager.viewAllCourses();
+                    break;
+
                 case 3:
-                    // Submenu for course actions  
                     System.out.println("a. Search Course\nb. Edit Course\nc. Delete Course");
                     String c = sc.nextLine();
-                    // equalsIgnoreCase check c input and allow both uppercase and lowercase letters (a/A, b/B, c/C)
-                    if(c.equalsIgnoreCase("a")) manager.searchCourse();
-                    else if(c.equalsIgnoreCase("b")) manager.editCourse();
-                    else if(c.equalsIgnoreCase("c")) manager.deleteCourse();
+
+                    if(c.equalsIgnoreCase("a")) {
+                        System.out.print("Enter course code to cache/search: ");
+                        String courseCode = sc.nextLine();
+                        cacheManager.cacheCourseSearch(courseCode);
+
+                        Course course = courseManager.getCourseByCode(courseCode);
+                        if(course != null) course.displayCourse();
+                        else System.out.println("Course not found!");
+                    }
+                    else if(c.equalsIgnoreCase("b")) {
+                        courseManager.editCourse();
+                    }
+                    else if(c.equalsIgnoreCase("c")) {
+                        int deletedCourseIndex = courseManager.deleteCourse();
+                        relationshipManager.removeCourseRelationship(deletedCourseIndex);
+                    }
+                    else {
+                        System.out.println("Invalid option!");
+                    }
                     break;
-                case 4: manager.addStudent(); break; // Add student
-                case 5: manager.viewAllStudents(); break; // Show all students
+
+                case 4:
+                    studentManager.addStudent();
+                    break;
+
+                case 5:
+                    studentManager.viewAllStudents();
+                    break;
+
                 case 6:
-                    // Submenu for student actions
                     System.out.println("a. Search Student\nb. Edit Student\nc. Delete Student");
                     String s = sc.nextLine();
-                    // equalsIgnoreCase check s input and allow both uppercase and lowercase letters (a/A, b/B, c/C)
-                    if(s.equalsIgnoreCase("a")) manager.searchStudent();
-                    else if(s.equalsIgnoreCase("b")) manager.editStudent();
-                    else if(s.equalsIgnoreCase("c")) manager.deleteStudent();
+
+                    if(s.equalsIgnoreCase("a")) {
+                        System.out.print("Enter student ID to cache/search: ");
+                        String studentId = sc.nextLine();
+                        cacheManager.cacheStudentSearch(studentId);
+
+                        Student student = studentManager.getStudentById(studentId);
+                        if(student != null) student.displayStudent();
+                        else System.out.println("Student not found!");
+                    }
+                    else if(s.equalsIgnoreCase("b")) {
+                        studentManager.editStudent();
+                    }
+                    else if(s.equalsIgnoreCase("c")) {
+                        int deletedStudentIndex = studentManager.deleteStudent();
+                        relationshipManager.removeStudentRelationship(deletedStudentIndex);
+                    }
+                    else {
+                        System.out.println("Invalid option!");
+                    }
                     break;
-                case 7: manager.assignStudentToCourse(); break; // Assign student to course
-                case 8: manager.listCoursesOfStudent(); break;  // Show courses of a student
-                case 9: manager.listStudentsOfCourse(); break;  // Show students of a course
-                case 0: System.out.println("Exiting system..."); break; // Exit
-                default: System.out.println("Invalid choice!"); // Invalid input
+
+                case 7:
+                    relationshipManager.assignStudentToCourse();
+                    break;
+
+                case 8:
+                    relationshipManager.listCourses();
+                    break;
+
+                case 9:
+                    relationshipManager.listStudents();
+                    break;
+
+                case 10:
+                    System.out.print("Enter partial course code: ");
+                    cacheManager.suggestCourses(sc.nextLine());
+                    break;
+
+                case 11:
+                    System.out.print("Enter partial student ID: ");
+                    cacheManager.suggestStudents(sc.nextLine());
+                    break;
+
+                case 0:
+                    System.out.println("Exiting system...");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice!");
             }
-        } while(choice != 0); // Continue loop until 0 is entered
+
+        } while(choice != 0);
+
+        sc.close();
     }
 }
