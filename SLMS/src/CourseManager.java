@@ -17,10 +17,10 @@ import java.util.Scanner;
 public class CourseManager {
 
     private Scanner sc;
-    private Course[] courses = new Course[100];
-    private int courseCount = 0;
+    private Course[] courses = new Course[100]; // Fixed-size storage
+    private int courseCount = 0; // Tracks number of stored courses
 
-    // Constructor
+    // Constructor:  Initializes scanner and loads sample data
     public CourseManager(Scanner sc) {
         this.sc = sc;
         loadSampleCourses();
@@ -42,7 +42,7 @@ public class CourseManager {
     // Add a new course
     public void addCourse() {
         if(courseCount >= courses.length) {
-            System.out.println("Course list full!");
+            System.out.println("Course list full!"); // Prevent overflow of array
             return;
         }
 
@@ -50,20 +50,21 @@ public class CourseManager {
         String code = sc.nextLine();
 
         if(findCourseIndex(code) != -1) {
-            System.out.println("Course exists!");
+            System.out.println("Course exists!"); // Prevent duplicate course entry
             return;
         }
 
         System.out.print("Course Name: ");
         String name = sc.nextLine();
 
-        int credit = 0;
+        int credit = 0; // store validated credit hour
         while(true) {
             try {
                 System.out.print("Credit Hour: ");
-                credit = Integer.parseInt(sc.nextLine());
-                if(credit <= 0) throw new NumberFormatException();
+                credit = Integer.parseInt(sc.nextLine()); // Convert user input (String) into integer
+                if(credit <= 0) throw new NumberFormatException(); // Validate credit must be positive
                 break;
+            // Error handling to catch non-integer input (example: abc), negative or zero values
             } catch(NumberFormatException e) {
                 System.out.println("Invalid input! Please enter a positive integer for credit hour.");
             }
@@ -79,8 +80,9 @@ public class CourseManager {
         while(true) {
             System.out.print("Course Type (core/elective/university): ");
             type = sc.nextLine().toLowerCase();
+            // validation of allowed values
             if(type.equals("core") || type.equals("elective") || type.equals("university")) break;
-            else System.out.println("Invalid course type. Please enter 'core', 'elective', or 'university'.");
+            else System.out.println("Invalid course type. Please enter 'core', 'elective' or 'university'.");
         }
 
         courses[courseCount++] = new Course(code, name, credit, summary, link, type);
@@ -92,7 +94,7 @@ public class CourseManager {
         for(int i = 0; i < courseCount; i++) {
             if(courses[i].getCourseCode().equalsIgnoreCase(code)) return i;
         }
-        return -1;
+        return -1; 
     }
 
     // Search for course
@@ -107,7 +109,7 @@ public class CourseManager {
     public Course getCourseByCode(String code) {
         int idx = findCourseIndex(code);
         if(idx != -1) return courses[idx];
-        return null;
+        return null; 
     }
 
     // Edit course
@@ -121,7 +123,7 @@ public class CourseManager {
 
             System.out.print("New Name (" + c.getCourseName() + "): ");
             String n = sc.nextLine();
-            if(!n.isEmpty()) c.setCourseName(n);
+            if(!n.isEmpty()) c.setCourseName(n); // ignore empty input
 
             System.out.print("New Credit (" + c.getCreditHour() + "): ");
             String cr = sc.nextLine();
@@ -167,14 +169,15 @@ public class CourseManager {
             courses[idx].displayCourse();
             System.out.print("Confirm delete? (y/n): ");
             if(sc.nextLine().equalsIgnoreCase("y")) {
+                // shift elements left
                 for(int i = idx; i < courseCount - 1; i++) {
                     courses[i] = courses[i + 1];
                 }
-                courses[courseCount - 1] = null;
+                courses[courseCount - 1] = null; // remove last elements
                 courseCount--;
 
                 System.out.println("Course deleted successfully!");
-                viewAllCourses(); // Added to match lab outline
+                viewAllCourses(); 
                 return idx;
             } else {
                 System.out.println("Deletion canceled.");
