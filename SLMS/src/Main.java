@@ -48,7 +48,7 @@ public class Main {
             try {
                 choice = Integer.parseInt(sc.nextLine());
             } catch(NumberFormatException e) {
-                System.out.println("Invalid input! Please enter a number.");
+                System.out.println("Invalid input! Please enter a number."); // Error handling to catch non-integer input (example: abc), negative or zero values
                 choice = -1;
                 continue;
             }
