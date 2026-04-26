@@ -20,7 +20,7 @@ public class StudentManager {
     private Student[] students = new Student[100];
     private int studentCount = 0;
 
-    // Constructor
+    // Constructor:  Initializes scanner and loads sample data
     public StudentManager(Scanner sc) {
         this.sc = sc;
         loadSampleStudents();
