@@ -14,13 +14,13 @@ Represents a student in the SLMS system with attributes, getters, setters, and d
 
 public class Student {
 
-    // Variables to store student details
+    // Attributes to store student details
     private String studentID;   // Unique ID
     private String studentName; // Name of student
     private String email;       // Student email
     private String phone;       // Student phone number
 
-    // Constructor to create new student
+    // Constructor: Initializes all course attributes when a Student object is created
     public Student(String studentID, String studentName, String email, String phone) {
         this.studentID = studentID;
         this.studentName = studentName;
@@ -49,3 +49,5 @@ public class Student {
         System.out.println("==================================");
     }
 }
+
+
