@@ -14,15 +14,15 @@ Represents a course in the SLMS system with attributes, getters, setters, and di
 
 public class Course {
 
-    // Variables to store course details
+    // Attributes to store course information
     private String courseCode; // Unique course code
     private String courseName; // Name of the course
     private int creditHour;    // Number of credit hours
-    private String summary;    // Short description
-    private String teamsLink;  // Link to Microsoft Teams
-    private String courseType; // Type: core or elective
+    private String summary;    // Brief description of the course
+    private String teamsLink;  // Microsoft Teams link
+    private String courseType; // Type: core, elective, university
 
-    // Constructor to create a new course
+    // Constructor: Initializes all course attributes when a Course object is created
     public Course(String courseCode, String courseName, int creditHour,
                   String summary, String teamsLink, String courseType) {
         this.courseCode = courseCode;
@@ -60,5 +60,3 @@ public class Course {
         System.out.println("==================================");
     }
 }
-
-
