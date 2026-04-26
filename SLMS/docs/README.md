@@ -99,14 +99,12 @@ This is the **main document for evaluation**
 
 ---
 
-## Diagrams (if applicable)
+## Diagrams 
 
 This folder may include:
 
-- System Architecture Diagram  
+- Use Case Diagram  
 - Class Diagram  
-- Flowchart / Program Flow  
-- Relationship Matrix Visualization  
 
 These diagrams support better understanding of system structure and logic.
 
