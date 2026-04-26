@@ -25,7 +25,7 @@ Represents a course with attributes:
 - Credit hour  
 - Summary  
 - Microsoft Teams link  
-- Course type (core / elective)
+- Course type (core / elective /university)
 
 ---
 
@@ -81,7 +81,7 @@ Includes error handling:
 
 ---
 
-### CacheAPI.java (Middleware API)
+### SearchCacheManager.java (Middleware API)
 Simulates a simple **middleware API** to improve usability.
 
 Features:
@@ -151,23 +151,3 @@ Responsibilities:
 - Simple API simulation using CacheAPI  
 - In-memory storage (no database)  
 - Preloaded sample data for testing  
-
----
-
-## 🖥️ Technologies Used
-
-- Java (JDK 8 or higher)  
-- NetBeans IDE (Recommended)  
-- Command Line / Terminal
-- GitHub
-
----
-
-## ▶️ How to Run
-
-### Using NetBeans (Recommended)
-1. Open NetBeans IDE  
-2. Click **File** and **Open Project**  
-3. Select the SLMS project folder  
-4. Right-click Main.java  
-5. Click **Run File**
