@@ -70,12 +70,12 @@ public class RelationshipManager {
         System.out.println("Assignment successful!");
     }
 
-    // Required by outline: addCourse() to student relationship
+    // addCourse() to student relationship
     public void addCourse() {
         assignStudentToCourse();
     }
 
-    // Required by outline: addStudent() to course relationship
+    // addStudent() to course relationship
     public void addStudent() {
         assignStudentToCourse();
     }
@@ -150,7 +150,7 @@ public class RelationshipManager {
 
         for(int s = 0; s < studentManager.getStudentCount(); s++) {
             for(int c = deletedCourseIndex; c < courseManager.getCourseCount(); c++) {
-                relationship[s][c] = relationship[s][c + 1];
+                relationship[s][c] = relationship[s][c + 1]; //Prevent overflow
             }
             relationship[s][courseManager.getCourseCount()] = false;
         }
